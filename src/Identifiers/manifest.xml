@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.dbones.co.uk/developer/boxes/2012">
+  <name>Identifiers</name>
+  <version>1.0.0</version>
+  <description>
+    Supplies some default ways to identify exported types. 
+    Interfaces and Attributes for Singleton and Transient are currently exposed
+  </description>
+  <exports>
+    <assembly name="Identifiers" />
+  </exports>
+</manifest>

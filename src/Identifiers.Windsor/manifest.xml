@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.dbones.co.uk/developer/boxes/2012/extension">
+  <name>Identifiers.Windsor</name>
+  <version>1.0.0</version>
+  <description>Extends Boxes.Integration to use Identifiers</description>
+  <exports></exports>
+  <imports>
+    <dependency name="Identifiers" />
+  </imports>
+  <extends>
+    <assembly name="Identifiers.Windsor" />
+  </extends>
+</manifest>

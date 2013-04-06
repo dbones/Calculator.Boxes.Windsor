@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.dbones.co.uk/developer/boxes/2012">
+  <name>NCalcEngine</name>
+  <version>1.0.0</version>
+  <description>
+    NCalc Parser
+  </description>
+  <exports>
+    <assembly name = "Calc.NCalcEngine" />
+  </exports>
+  <imports>
+    <dependency name = "Calc.Core" />
+    <dependency name = "Identifiers" />
+  </imports>
+</manifest>
