@@ -9,13 +9,12 @@ namespace Calc.Commands
     /// allows the user to undo the last command, which affected the current value
     /// </summary>
     /// <remarks>
-    /// this it not pretty code, please apply thought before copying it
+    /// this is not pretty code, please apply thought before copying it
     /// </remarks>
     public class UndoCommand : ICalculatorCommand, ITransientDependency
     {
         private readonly Stack<decimal> _values = new Stack<decimal>();
         private decimal _undoValue = 0;
-
 
         public string Execute(string input, decimal currentValue)
         {
@@ -34,8 +33,8 @@ namespace Calc.Commands
                 _values.Push(_undoValue);
                 _undoValue = currentValue;
             }
+        
             return input;
-
         }
     }
 }

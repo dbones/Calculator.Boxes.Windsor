@@ -7,4 +7,4 @@ currently there is
 * Undo command
 
 
-nit-picker corner, its a smaple app, not production code.
+nit-picker corner, its a sample app, not production code.

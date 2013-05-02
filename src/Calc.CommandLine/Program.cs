@@ -1,11 +1,8 @@
 ﻿namespace Calc.CommandLine
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
-    using Boxes;
     using Boxes.Discovering;
     using Boxes.Integration;
     using Boxes.Integration.Extensions;
@@ -39,11 +36,14 @@
                     Console.WriteLine();
                 } while (input != null && input.ToLower() != "q");
 
-                //always ensure the dispose is called at the end of your app
-            }
+            } //always ensure the dispose is called at the end of your app
+
+
             Console.Write("thank you - press enter");
             Console.ReadLine();
         }
+
+
 
         private static string SetupPackagesDirectory()
         {
