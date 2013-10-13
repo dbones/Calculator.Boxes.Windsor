@@ -1,42 +1,43 @@
+using Boxes.Integration.Setup;
+using Boxes.Integration.Setup.Registrations;
+using Boxes.Windsor;
+using Castle.Windsor;
+
 namespace Identifiers.Windsor
 {
-    using Boxes.Integration;
-    using Boxes.Integration.ContainerSetup;
     using Boxes.Integration.Extensions;
     using Castle.MicroKernel.Lifestyle;
 
-    public class Extension : IBoxesExtension
+    public class Extension : ISetupBoxesExtension<IDefaultContainerSetup<IWindsorContainer>>
     {
-        public void Extend(IBoxesWrapper boxes)
+        public bool CanHandle(IDefaultContainerSetup<IWindsorContainer> extension)
         {
-            var singleton = new Registration()
+            return true;
+        }
+
+        public void Configure(IDefaultContainerSetup<IWindsorContainer> containerSetup)
+        {
+            containerSetup.AddRegistration(new Register()
                 .Where(x => typeof(ISingletonDependency).IsAssignableFrom(x))
-                .LifeStyle<SingletonLifestyleManager>()
-                .RegisterWith(RegisterWith.SelfAndAllInterfaces);
+                .LifeStyle(typeof(SingletonLifestyleManager))
+                .AssociateWith(Contracts.SelfAndAllInterfaces));
 
-            var tranient = new Registration()
+            containerSetup.AddRegistration(new Register()
                 .Where(x => typeof(ITransientDependency).IsAssignableFrom(x))
-                .LifeStyle<TransientLifestyleManager>()
-                .RegisterWith(RegisterWith.SelfAndAllInterfaces);
+                .LifeStyle(typeof(TransientLifestyleManager))
+                .AssociateWith(Contracts.SelfAndAllInterfaces));
 
-            var singletonAttr = new Registration()
+            containerSetup.AddRegistration(new Register()
                 .Where(x => x.HasAttribute<SingletonDependencyAttribute>())
-                .LifeStyle<SingletonLifestyleManager>()
-                .RegisterWith(RegisterWith.SelfAndAllInterfaces);
+                .LifeStyle(typeof(SingletonLifestyleManager))
+                .AssociateWith(Contracts.SelfAndAllInterfaces));
 
-            var tranientAttr = new Registration()
+            containerSetup.AddRegistration(new Register()
                 .Where(x => x.HasAttribute<TransientDependencyAttribute>())
-                .LifeStyle<TransientLifestyleManager>()
-                .RegisterWith(RegisterWith.SelfAndAllInterfaces);
+                .LifeStyle(typeof(TransientLifestyleManager))
+                .AssociateWith(Contracts.SelfAndAllInterfaces));
 
-
-            boxes.BoxesContainerSetup.RegisterLifeStyle(tranient);
-            boxes.BoxesContainerSetup.RegisterLifeStyle(singleton);
-
-            boxes.BoxesContainerSetup.RegisterLifeStyle(tranientAttr);
-            boxes.BoxesContainerSetup.RegisterLifeStyle(singletonAttr);
-
-            boxes.BoxesIntegrationSetup.AddPackgeLevelFilter(new Filter(), "Identifiers");
+            containerSetup.AddPackgeLevelFilter(new Filter(), "Identifiers");
         }
     }
 }

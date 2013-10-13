@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.dbones.co.uk/developer/boxes/2012/extension">
+  <name>Container.Windsor</name>
+  <version>1.0.0</version>
+  <description>Defines the Process interface and a default implementation</description>
+  <exports>
+    <assembly name="Container.Windsor" />
+  </exports>
+  <imports>
+    <dependency name="Identifiers" />
+  </imports>
+  <extends>
+    <assembly name="Container.Windsor" />
+  </extends>
+</manifest>

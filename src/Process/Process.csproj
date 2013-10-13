@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C1D7892-08C8-46A6-A022-91E0D19CF569}</ProjectGuid>
+    <ProjectGuid>{9147EF1B-645B-4B6F-819D-61EBFF66B43D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Identifiers.Windsor</RootNamespace>
-    <AssemblyName>Identifiers.Windsor</AssemblyName>
+    <RootNamespace>Process</RootNamespace>
+    <AssemblyName>Process</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,37 +36,32 @@
     <Reference Include="Boxes.Integration">
       <HintPath>..\packages\Boxes.Integration.0.3.16\lib\net40\Boxes.Integration.dll</HintPath>
     </Reference>
-    <Reference Include="Boxes.Windsor, Version=0.3.17.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Boxes.Windsor">
       <HintPath>..\packages\Boxes.Windsor.0.3.17\lib\net40\Boxes.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributeExtensions.cs" />
-    <Compile Include="Extension.cs" />
-    <Compile Include="Filter.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="DefaultPackageLoader.cs" />
+    <Compile Include="ILoadProcess.cs" />
+    <Compile Include="PipelineExecutorWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Identifiers\Identifiers.csproj">
-      <Project>{5f873342-d9a3-49ad-9398-3391350c124a}</Project>
-      <Name>Identifiers</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="manifest.xml">

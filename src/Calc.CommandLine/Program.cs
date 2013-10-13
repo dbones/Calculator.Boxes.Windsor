@@ -1,4 +1,10 @@
-﻿namespace Calc.CommandLine
+﻿using System.Collections.Generic;
+using Boxes.Integration.Factories;
+using Boxes.Integration.Setup;
+using Boxes.Integration.Trust;
+using Process;
+
+namespace Calc.CommandLine
 {
     using System;
     using System.IO;
@@ -20,8 +26,14 @@
         {
             string packageDirectory = SetupPackagesDirectory();
             using (var boxes = CreateBoxesWrapper(packageDirectory))
-            {
-                var calculator = boxes.DependencyResolver.Resolve<Calculator>();
+            {             
+                Application app = new Application();
+
+
+                var loadProcess = boxes.LoadProcess();
+                loadProcess.LoadPackages(app, new List<string> { "Calc.Commands", "Calc.NCalcEngine", "Calc.Core" });
+
+                var calculator = boxes.GetDependencyResolver(app).Resolve<Calculator>();
 
                 //the main part of the application
                 string input;
@@ -65,7 +77,7 @@
             return modulesFolder;
         }
 
-        private static IBoxesWrapper CreateBoxesWrapper(string packageDirectory)
+        private static IBoxesWrapper<IWindsorContainer, IWindsorContainer> CreateBoxesWrapper(string packageDirectory)
         {
             //we want to support multiple manifest types. the default is XmlManifest2012Reader
             var xmlManifestTask = new XmlManifestTask();
@@ -77,17 +89,79 @@
             packageScanner.SetManifestTask(xmlManifestTask);
 
             //you can setup the container before hand
-            IWindsorContainer container = new WindsorContainer();
-            container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true));
-
+            var iocSetup = 
+                new FuncIocSetup<IWindsorContainer>(
+                    container => container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true)), 
+                    childContainer =>{} );
 
             
             //the main bit for using boxes
-            var boxes = new BoxesWrapper(container);
+            var boxes = new BoxesWrapper();
             boxes.Setup<DefaultLoader>(packageScanner);
             boxes.DiscoverPackages();
-            boxes.LoadPackages();
+            boxes.LoadPackages(); //load packages into integration, not the application
             return boxes;
         }
     }
+
+    public class FuncIocSetup<T> : IIocSetup<T>
+    {
+        private readonly Action<T> _configure;
+        private readonly Action<T> _configureChild;
+
+        public FuncIocSetup(Action<T> configure, Action<T> configureChild)
+        {
+            _configure = configure;
+            _configureChild = configureChild;
+        }
+
+        public void Configure(T builder)
+        {
+            _configure(builder);
+        }
+
+        public void ConfigureChild(T builder)
+        {
+            _configureChild(builder);
+        }
+    }
+
+
+    /// <summary>
+    /// extensions for the boxes wrapper
+    /// </summary>
+    public static class BoxesWrapperExtensions
+    {
+        ///// <summary>
+        ///// A mechanism to handle type registration with the Tenant(s) IoC container.
+        ///// </summary>
+        //public static IDefaultContainerSetup<TBuilder> ContainerSetup<TBuilder>(this IBoxesWrapper<TBuilder> boxes)
+        //{
+        //    return boxes.GetService<IDefaultContainerSetup<TBuilder>>();
+        //}
+
+        public static ILoadProcess<TBuilder, TContainer> LoadProcess<TBuilder, TContainer>(this IBoxesWrapper<TBuilder, TContainer> boxes)
+        {
+            return boxes.GetService<ILoadProcess<TBuilder, TContainer>>();
+        }
+        
+        ///// <summary>
+        ///// the current execution context, get the current Tenant
+        ///// </summary>
+        //public static IExecutionContext Context<TBuilder>(this IBoxesWrapper<TBuilder> boxes)
+        //{
+        //    return boxes.GetService<IExecutionContext>();
+        //}
+
+
+        public static IDependencyResolver GetDependencyResolver<TBuilder, TContainer>(this IBoxesWrapper<TBuilder, TContainer> boxes,
+            Application application)
+        {
+            var factory = boxes.GetService<IDependencyResolverFactory>();
+            return factory.CreateResolver(application.Container);
+        }
+    }
+
+
+
 }
