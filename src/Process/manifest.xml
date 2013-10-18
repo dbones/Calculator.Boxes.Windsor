@@ -4,7 +4,7 @@
   <version>1.0.0</version>
   <description>Defines the Process interface and a default implementation</description>
   <exports>
-    <assembly name="Process" />
+    <assembly name="Process" /> <!--export it if it is referenced by the host app-->
   </exports>
   <imports>
     <dependency name="Identifiers" />

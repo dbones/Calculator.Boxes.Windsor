@@ -6,6 +6,7 @@ using Castle.Windsor;
 namespace Identifiers.Windsor
 {
     using Boxes.Integration.Extensions;
+    using Boxes.Integration.Setup.Interception;
     using Castle.MicroKernel.Lifestyle;
 
     public class Extension : ISetupBoxesExtension<IDefaultContainerSetup<IWindsorContainer>>

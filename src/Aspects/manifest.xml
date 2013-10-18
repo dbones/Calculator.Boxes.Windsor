@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.dbones.co.uk/developer/boxes/2012">
+  <name>Aspects</name>
+  <version>1.0.0</version>
+  <description>AOP interceptors</description>
+  <exports>
+    <assembly name="Aspects" />
+  </exports>
+  <imports>
+    <dependency name="Identifiers" />
+  </imports>
+</manifest>

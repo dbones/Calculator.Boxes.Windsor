@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C1D7892-08C8-46A6-A022-91E0D19CF569}</ProjectGuid>
+    <ProjectGuid>{1D0F1178-5D7F-4C3D-9267-2A33C7527B86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Identifiers.Windsor</RootNamespace>
-    <AssemblyName>Identifiers.Windsor</AssemblyName>
+    <RootNamespace>Aspects.Windsor</RootNamespace>
+    <AssemblyName>Aspects.Windsor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,12 +32,15 @@
   <ItemGroup>
     <Reference Include="Boxes.Core">
       <HintPath>..\packages\Boxes.Core.0.4.31\lib\net40\Boxes.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Boxes.Integration">
       <HintPath>..\packages\Boxes.Integration.0.4.24\lib\net40\Boxes.Integration.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Boxes.Windsor">
       <HintPath>..\packages\Boxes.Windsor.0.4.25\lib\net40\Boxes.Windsor.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
@@ -55,17 +56,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributeExtensions.cs" />
-    <Compile Include="Extension.cs" />
-    <Compile Include="Filter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aspects\Aspects.csproj">
+      <Project>{c6a4783c-22e9-4dba-8184-9ef2c7cf604a}</Project>
+      <Name>Aspects</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Identifiers\Identifiers.csproj">
-      <Project>{5f873342-d9a3-49ad-9398-3391350c124a}</Project>
+      <Project>{5F873342-D9A3-49AD-9398-3391350C124A}</Project>
       <Name>Identifiers</Name>
       <Private>False</Private>
     </ProjectReference>

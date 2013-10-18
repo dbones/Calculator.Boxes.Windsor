@@ -88,13 +88,6 @@ namespace Calc.CommandLine
             var packageScanner = new PackageScanner(packageDirectory);
             packageScanner.SetManifestTask(xmlManifestTask);
 
-            //you can setup the container before hand
-            var iocSetup = 
-                new FuncIocSetup<IWindsorContainer>(
-                    container => container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true)), 
-                    childContainer =>{} );
-
-            
             //the main bit for using boxes
             var boxes = new BoxesWrapper();
             boxes.Setup<DefaultLoader>(packageScanner);

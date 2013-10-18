@@ -25,19 +25,4 @@ namespace Process
         public object Container { get; set; }
 
     }
-
-    ///// <summary>
-    ///// the global container setup
-    ///// </summary>
-    ///// <typeparam name="TBuilder">the ioc builder class</typeparam>
-    //public interface IApplicationContainerSetup<TBuilder> : IContainerSetup<TBuilder> { }
-
-    //public class ApplicationContainerSetup<TBuilder> : ContainerSetupBase<TBuilder>, IApplicationContainerSetup<TBuilder>
-    //{
-    //    public ApplicationContainerSetup(IRegistrationTaskMapper<TBuilder> registrationTaskMapper)
-    //        : base(registrationTaskMapper)
-    //    {
-    //    }
-    //}
-
 }

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.dbones.co.uk/developer/boxes/2012/extension">
+  <name>Aspects.Windsor</name>
+  <version>1.0.0</version>
+  <description>Extends Boxes.Integration to use aspects</description>
+  <exports></exports>
+  <imports>
+    <dependency name="Identifiers" />
+    <dependency name="Aspects" />
+  </imports>
+  <extends>
+    <assembly name="Aspects.Windsor" />
+  </extends>
+</manifest>
