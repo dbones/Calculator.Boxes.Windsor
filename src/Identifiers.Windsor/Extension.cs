@@ -1,13 +1,11 @@
-using Boxes.Integration.Setup;
-using Boxes.Integration.Setup.Registrations;
-using Boxes.Windsor;
-using Castle.Windsor;
-
 namespace Identifiers.Windsor
 {
     using Boxes.Integration.Extensions;
-    using Boxes.Integration.Setup.Interception;
+    using Boxes.Integration.Setup;
+    using Boxes.Integration.Setup.Registrations;
+    using Boxes.Windsor;
     using Castle.MicroKernel.Lifestyle;
+    using Castle.Windsor;
 
     public class Extension : ISetupBoxesExtension<IDefaultContainerSetup<IWindsorContainer>>
     {

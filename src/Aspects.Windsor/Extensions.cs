@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aspects.Windsor
+﻿namespace Aspects.Windsor
 {
     using Boxes.Integration.Extensions;
     using Boxes.Integration.Setup;

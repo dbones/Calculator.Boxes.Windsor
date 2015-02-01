@@ -44,7 +44,7 @@
 
             var loadablePackages =
                 _packageRegistry.Packages
-                    .Where(x => x.CanLoad);
+                    .Where(x => x.Loaded);
                     //.Where(x => packagesToEnable.Contains(x.Name));
 
             //get process Order

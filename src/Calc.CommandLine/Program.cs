@@ -1,24 +1,20 @@
-﻿using System.Collections.Generic;
-using Boxes.Integration.Factories;
-using Boxes.Integration.Setup;
-using Boxes.Integration.Trust;
-using Process;
-
-namespace Calc.CommandLine
+﻿namespace Calc.CommandLine
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
     using Boxes.Discovering;
     using Boxes.Integration;
     using Boxes.Integration.Extensions;
+    using Boxes.Integration.Factories;
     using Boxes.Loading;
     using Boxes.Tasks;
     using Boxes.Windsor;
-    using Castle.MicroKernel.Resolvers.SpecializedResolvers;
     using Castle.Windsor;
     using Core;
     using Dev;
+    using Process;
 
     class Program
     {

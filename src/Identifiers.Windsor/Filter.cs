@@ -1,7 +1,6 @@
-using Boxes.Integration.Setup.Filters;
-
 namespace Identifiers.Windsor
 {
+    using Boxes.Integration.Setup.Filters;
     using System;
     using System.Collections.Generic;
     using System.Linq;

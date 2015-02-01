@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aspects
+﻿namespace Aspects
 {
+    using System;
     using Castle.DynamicProxy;
     using Identifiers;
 

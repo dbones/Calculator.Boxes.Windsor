@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Boxes.Integration;
-using Boxes.Integration.Setup;
-
-namespace Process
+﻿namespace Process
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// the application level is to register components which are shared between tenants. components which are enabled at this level should be able to handle tenancy.
     /// </summary>
